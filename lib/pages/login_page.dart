@@ -11,7 +11,6 @@ import 'package:scholar_chat/widgets/custom_text_field.dart';
 
 import 'chat_page.dart';
 
-
 class LoginPage extends StatelessWidget {
   bool isLoading = false;
 
@@ -27,12 +26,12 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        if(state is LoginLoading){
+        if (state is LoginLoading) {
           isLoading = true;
-        }else if(state is LoginSuccess){
+        } else if (state is LoginSuccess) {
           Navigator.pushNamed(context, ChatPage.id);
           isLoading = false;
-        }else if(state is LoginFailure){
+        } else if (state is LoginFailure) {
           showSnackBar(context, state.errMessage);
           isLoading = false;
         }
@@ -105,12 +104,11 @@ class LoginPage extends StatelessWidget {
                   ),
                   CustomButon(
                     onTap: () async {
-                      if (formKey.currentState!.validate())
-                      {
-                          BlocProvider.of<LoginCubit>(context).loginUser(
-                              email: email!,
-                              password: password!,
-                          );
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<LoginCubit>(context).loginUser(
+                          email: email!,
+                          password: password!,
+                        );
                       } else {}
                     },
                     text: 'LOGIN',
@@ -148,6 +146,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
-
 }
